@@ -45,6 +45,8 @@ int main(void)
 		if (signal(SIGINT, sigHandler) == SIG_ERR)
 			perror("signal error");
 		g_line = getline(&line, &n, stdin);
+		if (g_line == EOF)
+			_exit(0);
 		toke = malloc(sizeof(char) * 300);
 		line[g_line - 1] = 0; /* placing null character at end of the line */
 		token = strtok(line, DELIM); 
