@@ -19,7 +19,8 @@ char _putstring(char *str)
 
 int main(void)
 {
-	size_t n, g_line;
+	size_t n;
+	ssize_t g_line;
 	int pipe;
         char *token, *line;
 	char **toke;
