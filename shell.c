@@ -1,4 +1,15 @@
 #include "holberton.h"
+#include <signal.h>
+
+static void sigHandler(int sig)
+{
+	if (sig == SIGINT)
+	{
+		_putstring("\n");
+		_putstring(PROMPT);
+	}
+	
+}
 
 char _putstring(char *str)
 {
@@ -20,6 +31,8 @@ int main(int agrc, char *argv[], char *envp[])
 	while (98)
 	{
 		_putstring(PROMPT);
+		if (signal(SIGINT, sigHandler) == SIG_ERR)
+			perror("signal error");
 		g_line = getline(&line, &n, stdin);
 		toke = malloc(sizeof(char) * 300);
 	       	line[g_line - 1] = 0; /* placing null character at end of the line */
@@ -28,7 +41,7 @@ int main(int agrc, char *argv[], char *envp[])
 		while (token != NULL)
 		{
 			toke[i] = token;
-			token = strtok(NULL, " \n\t\r"); 
+			token = strtok(NULL, " \n\t\r;"); 
 			i++;
 		}
 		toke[i] = NULL;
@@ -49,4 +62,3 @@ int main(int agrc, char *argv[], char *envp[])
 	}
 	return (0);
 }
-
