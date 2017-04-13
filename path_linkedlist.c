@@ -5,17 +5,6 @@
 #include "holberton.h"
 extern char **environ;
 
-int _strlen(const char *s)
-{
-	int i = 0;
-
-	while (s[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
-}
-
 
 size_t print_list(const list_tt *h)
 {
@@ -83,11 +72,9 @@ list_tt *_build_list(void)
 {
 	char *string = _getenv("PATH");
 	const char b[2] = ":";
-        char *token;
-	list_tt *path_list;
+        char *token; 
 /*	struct path_list *new_node = malloc(sizeof(list_tt)); */
 	list_tt *node; 
-
 	/* need function to count dirs in PATH if(str[i] == ':' or '\0' count++*/
 
 	/* temp = malloc(sizeof(char *)*how_many dirs in PATH + 1 for NULL)*/
@@ -95,7 +82,6 @@ list_tt *_build_list(void)
 	/* for (i = 0; token != NULL; i++) use strdup(temp[i], token) temp[i] = NULL*/
 
 	/* return temp */
-	path_list = NULL;
         token = strtok(string, b);
 	node = NULL;
         while (token != NULL)

@@ -31,7 +31,7 @@ typedef struct environ_list
         const char *value;
         struct environ_list *next;
 } list_t;
-
+void _command(char **t);
 int _my_exit(void);
 int _strlen(const char *s);
 int _print_path(void);
