@@ -39,7 +39,7 @@ int main(void)
 	{
 		pipe = 1;
 	}
-	_putstring(PROMPT);
+/*	_putstring(PROMPT);*/
 	while (1)
 	{
 		_putstring(PROMPT);
@@ -48,12 +48,12 @@ int main(void)
 		g_line = getline(&line, &n, stdin);
 		toke = malloc(sizeof(char) * 300);
 		line[g_line - 1] = 0; /* placing null character at end of the line */
-		token = strtok(line, " \n\t\r"); 
+		token = strtok(line, DELIM); 
 		i = 0;
 		while (token != NULL)
 		{
 			toke[i] = token;
-			token = strtok(NULL, " \n\t\r;"); 
+			token = strtok(NULL, DELIM); 
 			i++;
 		}
 		toke[i] = NULL;
