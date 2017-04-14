@@ -38,8 +38,8 @@ void _path(char **t)
                 tmp_node = tmp_node->next;
                 if (tmp_node->next == NULL)
                 {
-			_putstring(t[0]);
-                        _putstring(": command not found\n");
+			_errorstring(t[0]);
+                        _errorstring(": command not found\n");
 			free(path);
 			free(head);
 			_exit(98);
