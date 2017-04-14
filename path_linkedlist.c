@@ -5,64 +5,51 @@
 #include "holberton.h"
 extern char **environ;
 
-
+/**
+ * print_list - prints all elements of a linked list
+ * @h: node input
+ * Return: node count
+ */
 size_t print_list(const list_tt *h)
 {
 	size_t i = 0;
 
-	while (h != NULL)
+	for (i = 0; h != NULL; h = h->next, i++)
 	{
-		i++;
-		printf("%s\n", h->string);
-		h = h->next;
+		printf("%s\n", h->str);
 	}
-
 	return (i);
 }
 
+/**
+ * add_node_end - add a new node at the end of a linked list
+ * @head: pointer to head of linked list
+ * @str: string copied and added to new node
+ * Return: addess of new element with new node
+ */
 
-list_tt *add_node_end(list_tt **head, char *str)
+list_tt *add_node_end(list_tt **head, const char *str)
 {
+	list_tt *tmp_node, *new_node = malloc(sizeof(list_tt));
 
-	char *temp = str;
-	list_tt *new_node;
-	list_tt *head_node;
-
-	if (str == NULL)
-	{
-		return (NULL);
-	}
-	head_node = *head;
-	new_node = (list_tt *)malloc(sizeof(list_tt)); 
 	if (new_node == NULL)
-	{
 		return (NULL);
-	}
-	new_node->string = temp;
-	if (new_node->string == NULL)
-	{
-		free(new_node);
-		return (NULL);
-	}
+	new_node->str = _strdup(str);
+	new_node->len = _strlen(str);
 	new_node->next = NULL;
-
 	if (*head == NULL)
 	{
 		*head = new_node;
 		return (new_node);
 	}
-	else
-	{
-		while (head_node->next != NULL)
-		{
-			head_node = head_node->next;
-		}
-		head_node->next = new_node;
-		new_node->next = NULL;
-		return (new_node);
-	}
-	return (NULL);
+	tmp_node = *head;
+	while (tmp_node->next != NULL)
+		tmp_node = tmp_node->next;
+	tmp_node->next = new_node;
+	return (new_node);
 }
+
+
 
 /*
  * _build_list - puts the PATH directories into linked lists
@@ -70,34 +57,37 @@ list_tt *add_node_end(list_tt **head, char *str)
  */
 list_tt *_build_list(void)
 {
-	char *string = _getenv("PATH");
-	const char b[2] = ":";
-        char *token; 
-/*	struct path_list *new_node = malloc(sizeof(list_tt)); */
-	list_tt *node; 
-	/* need function to count dirs in PATH if(str[i] == ':' or '\0' count++*/
-
-	/* temp = malloc(sizeof(char *)*how_many dirs in PATH + 1 for NULL)*/
-
-	/* for (i = 0; token != NULL; i++) use strdup(temp[i], token) temp[i] = NULL*/
-
-	/* return temp */
-        token = strtok(string, b);
-	node = NULL;
-        while (token != NULL)
+        char *dir, *full_path, *copy_path; 
+	list_tt *head; 
+	copy_path = malloc(100);
+	full_path = _getenv("PATH", copy_path);
+        dir = strtok(full_path, ":");
+	head = NULL;
+        while (dir != NULL)
         {
-		add_node_end(&node, token);
-		token = strtok(NULL, b);
+		add_node_end(&head, dir);
+		dir = strtok(NULL, ":");
 
 	}
-	return (node);
+	free(copy_path);
+	return (head);
 }
 
-/*
-int main(void)
+#include "holberton.h"
+/**
+ * free_list - frees linked list list_t from memory
+ * @head: pointer to head of linked list
+ * Return: N/A, void function
+ */
+void free_list(list_tt *head)
 {
-	_build_list();
-	return (0);
-}
+	list_tt *temp;
 
-*/
+	while (head != NULL)
+	{
+		temp = head;
+		head = head->next;
+		free(temp->str);
+		free(temp);
+	}
+}

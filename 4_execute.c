@@ -15,7 +15,9 @@ void _execute(char **tokens)
 	if (pid < 0)
 		perror("Fork did not succeed: ");
 	if (pid == 0)/* child processes */
+	{
 		_path(tokens);
+	}
 	else /* parent process */
 		pid = wait(&status);
 }

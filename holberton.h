@@ -13,13 +13,11 @@ extern char **environ;
 
 typedef struct path_list
 {
-        char *string;
+        char *str;
+	unsigned int len;
         struct path_list *next;
 } list_tt;
-/*
-char *builtin_string[] = {
-	"exit"
-	}; */
+
 /**                                                                                                                       
  * environ_list - linked list of environ                                                                                  
  * @name: name of environ list                                                                                            
@@ -48,10 +46,12 @@ int _setenv(const char *name, const char *value, int overwrite);
 list_t *_environ_linked(list_t *head);
 size_t print_list(const list_tt *h);
 list_tt *_build_list(void);
-list_tt *add_node_end(list_tt **head, char *str);
-char *_getenv(const char *name);
+list_tt *add_node_end(list_tt **head, const char *str);
+char *_getenv(const char *name, char *mem);
 void _path(char **t);
 char *_strcat(char *dest, char *src);
 char _putstring(char *str);
 char *_strcpy(char *dest, char *src);
+char *_strdup(const char *str);
+void free_list(list_tt *head);
 #endif

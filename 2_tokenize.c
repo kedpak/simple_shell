@@ -12,7 +12,7 @@ char **tokenize(char *line)
 	if (!tokens)
 	{
 		perror("allocation error\n");
-		_exit(-1);
+		_exit(1);
 	}
 	token = strtok(line, DELIM);/* tokenize words via delimeters */ 
 	while (token != NULL)
@@ -34,6 +34,7 @@ char **tokenize(char *line)
 /****************************************************/
 		token = strtok(NULL, DELIM);
 	}
+	free(token);
 	tokens[position] = NULL;
 	return (tokens);
 }

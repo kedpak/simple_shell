@@ -1,17 +1,15 @@
 #include "holberton.h"
 extern char **environ;
 
-char *_getenv(const char *name)
+char *_getenv(const char *name, char *mem_copy)
 {
-
-        int i = 0;
-        int len = _strlen(name);
-        int j = 0;
+        int i, j, len;
         const char s[2] = "=";
-        char *token;
-	char *copy = malloc(100);
+        char *token, *copy;
 	
-
+/* TODO add buffer resize */
+	copy = mem_copy;
+	i = j = 0; len = _strlen(name);
         while (environ[i] != NULL)
         {
                 if (environ[i][0] == name[0])
@@ -30,6 +28,5 @@ char *_getenv(const char *name)
                 }
                 i++;
         }
-
-        return (0);
+        return (NULL);
 }

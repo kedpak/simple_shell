@@ -19,7 +19,7 @@ char _putstring(char *str)
 
 int main(void)
 {
-	int pipe, _builtinCheck;
+	int pipe;/*int _builtinCheck;*/
         char *line, **tokens;
 	struct stat sb;
 
@@ -47,8 +47,8 @@ int main(void)
 			_execute(tokens);
 		if (pipe == 1)
 			break;
+		free(line);
+		free(tokens);
 	}
-	free(line);
-	free(tokens);
 	_exit(0);
 }
