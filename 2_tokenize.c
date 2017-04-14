@@ -24,7 +24,7 @@ char **tokenize(char *line)
 		if (position >= bufsize)
 		{
 			bufsize += BUFSIZE;
-			tokens = realloc(tokens, bufsize * sizeof(char*));  /****** TODO add custom realloc *******/
+			tokens = _realloc(tokens, bufsize * sizeof(char*), bufsize * sizeof(char*));  /****** TODO add custom realloc *******/
 			if (!tokens)
 			{
 				perror("allocation error\n");

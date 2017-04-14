@@ -55,4 +55,5 @@ char _putstring(char *str);
 char *_strcpy(char *dest, char *src);
 char *_strdup(const char *str);
 void free_list(list_tt *head);
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 #endif
