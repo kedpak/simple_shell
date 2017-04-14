@@ -1,5 +1,7 @@
 # simple_shell
 
+<img src="https://previews.123rf.com/images/karenr/karenr0906/karenr090600010/4962019-Shells-and-sand-dollars-making-a-happy-face-on-sand-shell-happy-face-Stock-Photo.jpg" alt="Happy Shell">
+
 ## DESCRIPTION
 A simple shell created for Holberton School as a partner project with Hunter Casbeer (@spacex3ngineer) & Kevin Pak (@kpak).
 
