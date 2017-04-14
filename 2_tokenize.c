@@ -1,30 +1,36 @@
 #include "holberton.h"
 #include "holberton.h"
 
+/**
+ * tokenize - seperate array of token (aka tokens) from _getline function
+ * @line: array of strings (tokens)
+* Return: array of characters associated with tokens ex: characters in /bin/ls
+*/
+
 char **tokenize(char *line)
 {
 	int bufsize, position;
-	char **tokens, *token; /* will need to be freed in main function */ /*the characters of each token */
-/* token = the words (strings), no malloc (see comment below */
+	char **tokens, *token; /*freed in main function */
 
 	bufsize = TOK_BUFSIZE, position = 0;
-	tokens = malloc(bufsize * sizeof(char*));
+	tokens = malloc(bufsize * sizeof(char *));
 	if (!tokens)
 	{
 		perror("allocation error\n");
 		_exit(1);
 	}
-	token = strtok(line, DELIM);/* tokenize words via delimeters */ 
+	token = strtok(line, DELIM);
 	while (token != NULL)
 	{
-		tokens[position] = token; /* since token is ref, no malloc */
+		tokens[position] = token;
 		position++;
-
 /************** resize buffer ************************/
 		if (position >= bufsize)
 		{
-			bufsize += BUFSIZE;
-			tokens = _realloc(tokens, bufsize * sizeof(char*), bufsize * sizeof(char*));  /****** TODO add custom realloc *******/
+			bufsize += TOK_BUFSIZ
+				tokens = _realloc(tokens,
+						  (bufsize - TOK_BUFSIZE) * sizeof(char *),
+						  bufsize * sizeof(char *));
 			if (!tokens)
 			{
 				perror("allocation error\n");
