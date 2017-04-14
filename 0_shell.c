@@ -17,7 +17,7 @@ char _putstring(char *str)
 	return (0);
 }
 
-void main(void)
+int main(void)
 {
 	int pipe, _builtinCheck;
         char *line, **tokens;
