@@ -9,6 +9,8 @@ char *_getenv(const char *name)
         int j = 0;
         const char s[2] = "=";
         char *token;
+	char *copy = malloc(100);
+	
 
         while (environ[i] != NULL)
         {
@@ -19,7 +21,8 @@ char *_getenv(const char *name)
                                 j++;
                                 if (len == j)
                                 {
-                                        token = strtok(environ[i], s);
+					copy = strcpy(copy,environ[i]);
+                                        token = strtok(copy, s);
                                         token = strtok(NULL, s);
                                         return(token);
                                 }

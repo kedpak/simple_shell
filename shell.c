@@ -3,11 +3,12 @@
 char _putstring(char *str)
 {
 	write(STDOUT_FILENO, str, _strlen(str));
+	return (0);
 }
 
 int main(int agrc, char *argv[], char *envp[])
 {
-	ssize_t n, g_line;
+	size_t n, g_line;
 	int status;
 	pid_t pid;
         char *token, *line;
@@ -22,7 +23,7 @@ int main(int agrc, char *argv[], char *envp[])
 		g_line = getline(&line, &n, stdin);
 		toke = malloc(sizeof(char) * 300);
 	       	line[g_line - 1] = 0; /* placing null character at end of the line */
-		token = strtok(line, " "); 
+		token = strtok(line, " \n\t\r"); 
 		i = 0;
 		while (token != NULL)
 		{
@@ -30,6 +31,7 @@ int main(int agrc, char *argv[], char *envp[])
 			token = strtok(NULL, " \n\t\r"); 
 			i++;
 		}
+		toke[i] = NULL;
 		pid = fork(); /*child process starts at this call */
 		if (pid < 0)
 		{
@@ -43,6 +45,7 @@ int main(int agrc, char *argv[], char *envp[])
 		{
 			pid = wait(&status);
 		}
+	       	free(toke);
 	}
 	return (0);
 }
