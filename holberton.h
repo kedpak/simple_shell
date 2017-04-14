@@ -7,6 +7,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/wait.h>
+#include <signal.h>
 extern char **environ;
 #define PROMPT "$ "
 
@@ -34,9 +35,12 @@ typedef struct environ_list
 
 /* Constants */
 #define BUFSIZE 1024
+#define TOK_BUFSIZE 64
 #define DELIM " \"\n\t\r;"
 /* functions */
-void _command(char **t);
+char *_getline(void);
+char **tokenize(char *line);
+void _execute(char **tokens);
 int _my_exit(void);
 int _strlen(const char *s);
 int _print_path(void);
