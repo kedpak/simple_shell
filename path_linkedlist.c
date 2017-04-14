@@ -97,9 +97,6 @@ list_tt *_build_list(void)
 	/* return temp */
 	path_list = NULL;
         token = strtok(string, b);
-
-/*	new_node->string = token; /*new node; is it necessary in this function?"*/
-/*	new_node->next = NULL;  */
 	node = NULL;
         while (token != NULL)
         {
@@ -107,8 +104,6 @@ list_tt *_build_list(void)
 		token = strtok(NULL, b);
 
 	}
-/*	print_list(path_list);*/ /*prints path list because that is the head of node*/
-	putchar('\n');
 	return (node);
 }
 
