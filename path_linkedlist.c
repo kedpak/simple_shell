@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "holberton.h"
-extern char **environ;
 
 /**
  * print_list - prints all elements of a linked list
@@ -49,22 +48,22 @@ list_tt *add_node_end(list_tt **head, const char *str)
 	return (new_node);
 }
 
-
-
-/*
+/**
  * _build_list - puts the PATH directories into linked lists
  * Return: node of string with data of string input
  */
+
 list_tt *_build_list(void)
 {
-        char *dir, *full_path, *copy_path; 
-	list_tt *head; 
+	char *dir, *full_path, *copy_path;
+	list_tt *head;
+
 	copy_path = malloc(100);
 	full_path = _getenv("PATH", copy_path);
-        dir = strtok(full_path, ":");
+	dir = strtok(full_path, ":");
 	head = NULL;
-        while (dir != NULL)
-        {
+	while (dir != NULL)
+	{
 		add_node_end(&head, dir);
 		dir = strtok(NULL, ":");
 
@@ -73,7 +72,6 @@ list_tt *_build_list(void)
 	return (head);
 }
 
-#include "holberton.h"
 /**
  * free_list - frees linked list list_t from memory
  * @head: pointer to head of linked list
