@@ -1,27 +1,16 @@
 #include "holberton.h"
 
-/**
- * _strlen - find length of string
- * @s: input string
- * Return: length integer
- */
 int _strlen(const char *s)
 {
-	int i = 0;
+        int i = 0;
 
-	while (s[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
+        while (s[i] != '\0')
+        {
+                i++;
+        }
+        return (i);
 }
 
-/**
- * _strcpy - copy strings
- * @dest: destnation output
- * @src: src input
- * Return: destination of copied string
- */
 char *_strcpy(char *dest, char *src)
 {
 	int i;
@@ -30,40 +19,35 @@ char *_strcpy(char *dest, char *src)
 	while (src[i] != '\0')
 	{
 		dest[i] = src[i];
-		i++;
+		++i;
 	}
 	dest[i] = '\0';
 	return (dest);
 
 }
 
-/**
- * _strcat - concatanate two strings
- * @dest: destination output
- * @src: src input
- * Return: concatonated strings
- */
 char *_strcat(char *dest, char *src)
 {
-	int i, j;
+        int i, j;
 
-	i = 0;
-	j = 0;
-/* gets the length of src string*/
-	while (dest[i] != '\0')
-	{
-		i++;
-	}
-	dest[i] = '/';
-	i++;
-	while (src[j] != '\0')
-	{
-		dest[i] = src[j];
-		j++;
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
+        i = 0;
+        j = 0;
+        /* gets the length of src string*/
+        while (dest[i] != '\0')
+        {
+                i++;
+        }
+        dest[i] = '/';
+        i++;
+        while (src[j] != '\0')
+        {
+
+                dest[i] = src[j];
+                j++;
+                i++;
+        }
+        dest[i] = '\0';
+        return (dest);
 }
 
 /**
@@ -83,12 +67,25 @@ char *_strdup(const char *str)
 	if (str == NULL)
 		return (NULL);
 	len = _strlen(str);
-	a = malloc(len * sizeof(char));
+	a = malloc(len * sizeof(char) + 1);
 	if (a == NULL)
 		return (NULL);
 	for (i = 0; i < len; i++)
 	{
 		a[i] = str[i];
 	}
+	a[i] = '\0';
 	return (a);
+}
+
+char _putstring(char *str)
+{
+	write(STDOUT_FILENO, str, _strlen(str));
+	return (0);
+}
+
+char _errorstring(char *str)
+{
+	write(STDERR_FILENO, str, _strlen(str));
+	return (0);
 }
