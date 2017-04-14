@@ -26,7 +26,35 @@ simple_shell is an sh-compatible command language interpreter that executes comm
 ### Overview
 The simple_shell is a command that reads lines from either a file or the terminal, interprets them, and generally executes other commands.  It is the program that is running when the user runs gcc -Wall -Werror -Wextra -pedantic *.c -o hsh and runs the executable file, ./hsh. It incorporates many features to aid interactive use and has the advantage that the interpretative language is common to both interactive and non-interactive use (shell scripts).  That is, commands can be typed directly to the running shell or can be put into a file and the file can be executed directly by the shell.
 
-For this project, we were limited to using a few 
+For this project, we were limited to what functions we could use which include:
+*   access (man 2 access)
+*   chdir (man 2 chdir)
+*   close (man 2 close)
+*   closedir (man 3 closedir)
+*   execve (man 2 execve)
+*   exit (man 3 exit)
+*   fork (man 2 fork)
+*   free (man 3 free)
+*   fstat (man 2 fstat)
+*   getcwd (man 3 getcwd)
+*   getline (man 3 getline)
+*   kill (man 2 kill)
+*   lstat (man 2 lstat)
+*   malloc (man 3 malloc)
+*   open (man 2 open)
+*   opendir (man 3 opendir)
+*   perror (man 3 perror)
+*   read (man 2 read)
+*   readdir (man 3 readdir)
+*   signal (man 2 signal)
+*   stat (man 2 stat)
+*   strtok (man 3 strtok)
+*   wait (man 2 wait)
+*   waitpid (man 2 waitpid)
+*   wait3 (man 2 wait3)
+*   wait4 (man 2 wait4)
+*   write (man 2 write)
+*   _exit (man 2 _exit)
 
 ### Simple Commands
  If a simple command has been recognized, the shell performs the following actions:
@@ -35,7 +63,7 @@ For this project, we were limited to using a few
 
  2.   The remaining words are expanded, and the first remaining word is considered the command name and the command is located.  The remaining words are considered the arguments of the command.  If no command name resulted, then the “name=value” variable assignments recognized in item 1 affect the current shell.
 
-###Interactive and Non-Interactive Mode
+### Interactive and Non-Interactive Mode
 To execute a command in Interactive Mode simply type in a command such as “ls”.  For Non-Interactive Mode use double quotes around commands. Ex: “echo” | “/bin/ls”
 
 ### Builtins
@@ -56,8 +84,11 @@ ls, cat, and grep.p
 
 ### Files
 0_shell.c - the main function that has 3 main functions that execute in addition to allow interactive and non-interactive mode.
+
 1_getline.c - obtain the user input and return a string
+
 2_tokenize.c - separate string into tokens
+
 4_execute.c - create child process, check PATH and execute any files that match with the tokens. From 4_execute the follow files build off each other:
 	    1) _path.c - called in 4_execute, checks if the command is found in the path
 	    2) path_linkedlist.c - where various custom list functions are found and where the path is manipulated into a linked list
@@ -66,11 +97,12 @@ ls, cat, and grep.p
 holberton.h - contains all the prototypes for the functions used as well as the struct for building the path in the form of a linked list.
 
 string_functions.c - custom string functions used in various files
+
 _realloc.c - custom realloc function used in various files
 
 NOTE:
 3_builtins.c - at this time this file is empty. We intended to include some built-ins but ran out of time.
-Additionally we did not have enough time to check for alias
+Additionally, we did not have enough time to check for aliases.
 
 ### Known Bugs
 1) “ls ARGUEMENTS“ - this is not supposed to execute
