@@ -29,7 +29,7 @@ size_t print_list(const list_tt *h)
 
 list_tt *add_node_end(list_tt **head, const char *str)
 {
-	list_tt *tmp_node, *new_node = malloc(sizeof(list_tt));
+	list_tt *tmp_node, *new_node = malloc(sizeof(list_tt) * 2);
 
 	if (new_node == NULL)
 		return (NULL);
@@ -58,7 +58,7 @@ list_tt *_build_list(void)
 	char *dir, *full_path, *copy_path;
 	list_tt *head;
 
-	copy_path = malloc(100);
+	copy_path = malloc(BUFSIZE);
 	full_path = _getenv("PATH", copy_path);
 	dir = strtok(full_path, ":");
 	head = NULL;
@@ -66,7 +66,6 @@ list_tt *_build_list(void)
 	{
 		add_node_end(&head, dir);
 		dir = strtok(NULL, ":");
-
 	}
 	free(copy_path);
 	return (head);
