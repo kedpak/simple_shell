@@ -27,7 +27,7 @@ char **tokenize(char *line)
 /************** resize buffer ************************/
 		if (position >= bufsize)
 		{
-			bufsize += TOK_BUFSIZ
+			bufsize += TOK_BUFSIZE;
 				tokens = _realloc(tokens,
 						  (bufsize - TOK_BUFSIZE) * sizeof(char *),
 						  bufsize * sizeof(char *));

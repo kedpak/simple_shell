@@ -10,10 +10,10 @@
 char *_getenv(const char *name, char *mem_copy)
 {
 	int i, j, len;
-	const char s[2];
+	const char s[2] = "=";
 	char *token, *copy;
 
-	copy = mem_copy; s = "=";
+	copy = mem_copy;
 	i = j = 0; len = _strlen(name);
 	while (environ[i] != NULL)
 	{
