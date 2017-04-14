@@ -1,8 +1,5 @@
 # simple_shell
 
-![Happy Shell](https://previews.123rf.com/images/karenr/karenr0906/karenr090600010/4962019-Shells-and-sand-dollars-making-a-happy-face-on-sand-shell-happy-face-Stock-Photo.jpg “Happy Shell“)
-
-
 ## DESCRIPTION
 A simple shell created for Holberton School as a partner project with Hunter Casbeer (@spacex3ngineer) & Kevin Pak (@kpak).
 
@@ -55,7 +52,7 @@ The simple shell will support all functions that can be found within a PATH
 ls, cat, and grep.p
 
 
-###Files
+### Files
 0_shell.c - the main function that has 3 main functions that execute in addition to allow interactive and non-interactive mode.
 1_getline.c - obtain the user input and return a string
 2_tokenize.c - separate string into tokens
@@ -73,7 +70,7 @@ NOTE:
 3_builtins.c - at this time this file is empty. We intended to include some built-ins but ran out of time.
 Additionally we did not have enough time to check for alias
 
-###Known Bugs
+### Known Bugs
 1) “ls ARGUEMENTS“ - this is not supposed to execute
 2)     /bin/ls
        /bin/ls
