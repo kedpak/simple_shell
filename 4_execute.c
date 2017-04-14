@@ -1,5 +1,11 @@
 #include "holberton.h"
 
+/**
+ * _execute - a child process is created to execute prompt
+ * @tokens: characters of each token
+* Return: N/A, action execute
+*/
+
 void _execute(char **tokens)
 {
 	pid_t pid;
@@ -10,7 +16,8 @@ void _execute(char **tokens)
 		return;
 
 	pid = fork(); /*child process starts at this call */
-	if (tokens[0][0] == 'e' && tokens[0][1] == 'x' && tokens[0][2] == 'i' && tokens[0][3] == 't')
+	if (tokens[0][0] == 'e' && tokens[0][1] == 'x'
+	    && tokens[0][2] == 'i' && tokens[0][3] == 't')
 		_exit(0);
 	if (pid < 0)
 		perror("Fork did not succeed: ");
