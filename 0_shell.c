@@ -1,6 +1,12 @@
 #include "holberton.h"
 #include <signal.h>
 
+/**
+ * sigHandler - checks signal for ^C
+ * @sig: signal value compared sigal flag SIGINT
+* Return: N/A, skip to newline if ^C is entered
+*/
+
 static void sigHandler(int sig)
 {
 	if (sig == SIGINT)
@@ -8,28 +14,26 @@ static void sigHandler(int sig)
 		_putstring("\n");
 		_putstring(PROMPT);
 	}
-	
 }
 
-char _putstring(char *str)
-{
-	write(STDOUT_FILENO, str, _strlen(str));
-	return (0);
-}
-
-char _errorstring(char *str)
-{
-	write(STDERR_FILENO, str, _strlen(str));
-	return (0);
-}
+/**
+ * main - main function for the shell
+* Description: There are currently 3 main function that perform basic
+* shell actions:
+* 1) _getline: get the user input
+* 2) tokenize: sperate input into tokens to be checked
+* 3) _execute: checks PATH for to see if tokens match with any files
+* (Not include before): check for aliases and built-ins
+* Return: N/A, exit 0 on success
+*/
 
 int main(void)
 {
 	int pipe;/*int _builtinCheck;*/
-        char *line, **tokens;
+	char *line, **tokens;
 	struct stat sb;
 
-	pipe = 0; 
+	pipe = 0;
 	if (fstat(STDIN_FILENO, &sb) == -1)
 	{
 		perror("status fail");
@@ -48,8 +52,8 @@ int main(void)
 		}
 		line = _getline();
 		tokens = tokenize(line);
-/*		builtinCheck = _builtins(tokens);
-		if (builtinCheck != 1)*/
+/*		builtinCheck = _builtins(tokens);*/
+/*		if (builtinCheck != 1)*/
 			_execute(tokens);
 		if (pipe == 1)
 			break;
