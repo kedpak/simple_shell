@@ -106,6 +106,7 @@ Additionally, we did not have enough time to check for aliases.
 
 ### Known Bugs
 1) “ls ARGUEMENTS“ - this is not supposed to execute
+
 2)     /bin/ls
        /bin/ls
        /bin/ls
