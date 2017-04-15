@@ -32,7 +32,7 @@ typedef struct path_list
 char *_getline(void);
 char _errorstring(char *str);
 char **tokenize(char *line);
-void _execute(char **tokens);
+void _execute(char **tokens, char *line);
 int _my_exit(void);
 int _strlen(const char *s);
 int _print_path(void);
@@ -41,12 +41,11 @@ size_t print_list(const list_tt *h);
 list_tt *_build_list(void);
 list_tt *add_node_end(list_tt **head, const char *str);
 char *_getenv(const char *name, char *mem);
-void _path(char **t);
+char *_path(char **t, list_tt *list);
 char *_strcat(char *dest, char *src);
 char _putstring(char *str);
 char *_strcpy(char *dest, char *src);
 char *_strdup(const char *str);
 void free_list(list_tt *head);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
-void _pathhelper(int file, char **t);
 #endif
