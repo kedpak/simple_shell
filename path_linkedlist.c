@@ -58,7 +58,7 @@ list_tt *_build_list(void)
 	char *dir, *full_path, *copy_path;
 	list_tt *head;
 
-	copy_path = malloc(BUFSIZE);
+	copy_path = malloc(100);
 	full_path = _getenv("PATH", copy_path);
 	dir = strtok(full_path, ":");
 	head = NULL;

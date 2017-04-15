@@ -4,7 +4,6 @@
  * _getline - gets line reads input from command line
  * Return: void
  */
-
 char *_getline(void)
 {
 	char *line; /* line is freed in the main function */
