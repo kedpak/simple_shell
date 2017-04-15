@@ -6,40 +6,25 @@
 * Return: N/A, action execute
 */
 
-void _execute(char **tokens, char *line)
+void _execute(char **tokens)
 {
 	pid_t pid;
 	int status;
-	list_tt *list;
-	char *path;
 
 	if (tokens[0] == NULL)
 		/* An empty command was entered. */
 		return;
+
+	pid = fork(); /*child process starts at this call */
 	if (tokens[0][0] == 'e' && tokens[0][1] == 'x'
 	    && tokens[0][2] == 'i' && tokens[0][3] == 't')
-	{
-		free(tokens);
-		free(line);
 		_exit(0);
-	}
-	list = _build_list();
-	path = _path(tokens, list);
-	pid = fork(); /*child process starts at this call */
 	if (pid < 0)
 		perror("Fork did not succeed: ");
 	if (pid == 0)/* child processes */
 	{
-		if (execve(path, tokens, environ) == -1)
-		{
-			free(path);
-			free_list(list);
-			perror("error");
-		}
-
+		_path(tokens);
 	}
 	else /* parent process */
 		pid = wait(&status);
-	free(path);
-	free_list(list);
 }
