@@ -43,7 +43,8 @@ int main(void)
 		pipe = 1;
 	while (1)
 	{
-		_putstring(PROMPT);
+		if (pipe == 0)
+			_putstring(PROMPT);
 		if (signal(SIGINT, sigHandler) == SIG_ERR)
 		{
 			perror("signal error");
