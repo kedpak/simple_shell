@@ -4,8 +4,8 @@
 /**
  * sigHandler - checks signal for ^C
  * @sig: signal value compared sigal flag SIGINT
-* Return: N/A, skip to newline if ^C is entered
-*/
+ * Return: N/A, skip to newline if ^C is entered
+ */
 
 static void sigHandler(int sig)
 {
@@ -18,14 +18,14 @@ static void sigHandler(int sig)
 
 /**
  * main - main function for the shell
-* Description: There are currently 3 main function that perform basic
-* shell actions:
-* 1) _getline: get the user input
-* 2) tokenize: sperate input into tokens to be checked
-* 3) _execute: checks PATH for to see if tokens match with any files
-* (Not include before): check for aliases and built-ins
-* Return: N/A, exit 0 on success
-*/
+ * Description: There are currently 3 main function that perform basic
+ * shell actions:
+ * 1) _getline: get the user input
+ * 2) tokenize: sperate input into tokens to be checked
+ * 3) _execute: checks PATH for to see if tokens match with any files
+ * (Not include before): check for aliases and built-ins
+ * Return: N/A, exit 0 on success
+ */
 
 int main(void)
 {
@@ -43,8 +43,7 @@ int main(void)
 		pipe = 1;
 	while (1)
 	{
-		if (pipe == 0)
-			_putstring(PROMPT);
+		_putstring(PROMPT);
 		if (signal(SIGINT, sigHandler) == SIG_ERR)
 		{
 			perror("signal error");
@@ -52,11 +51,9 @@ int main(void)
 		}
 		line = _getline();
 		tokens = tokenize(line);
-/*		builtinCheck = _builtins(tokens);*/
-/*		if (builtinCheck != 1)*/
-			_execute(tokens);
-		if (pipe == 1)
-			break;
+/*builtinCheck = _builtins(tokens);*/
+/*if (builtinCheck != 1)*/
+		_execute(tokens);
 		free(line);
 		free(tokens);
 	}
