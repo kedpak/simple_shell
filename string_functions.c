@@ -77,15 +77,3 @@ char *_strdup(const char *str)
 	a[i] = '\0';
 	return (a);
 }
-
-char _putstring(char *str)
-{
-	write(STDOUT_FILENO, str, _strlen(str));
-	return (0);
-}
-
-char _errorstring(char *str)
-{
-	write(STDERR_FILENO, str, _strlen(str));
-	return (0);
-}
