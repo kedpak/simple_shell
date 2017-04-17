@@ -6,7 +6,7 @@ char _putstring(char *str)
 	return (0);
 }
 
-int main(int agrc, char *argv[], char *envp[])
+int main(void)
 {
 	size_t n, g_line;
 	int pipe;
