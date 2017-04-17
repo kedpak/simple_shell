@@ -54,7 +54,6 @@ int main(void)
 		}
 		free(toke);
 	}
-	printf("after loopn\n");
 	exit(EXIT_SUCCESS);
 }
 
