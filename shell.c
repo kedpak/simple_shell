@@ -9,20 +9,35 @@ char _putstring(char *str)
 int main(int agrc, char *argv[], char *envp[])
 {
 	size_t n, g_line;
-	int status;
-	pid_t pid;
+	int pipe;
         char *token, *line;
 	char **toke;
 	unsigned int i;
+	struct stat sb;
 
 	n = 0;
+	pipe = 0; 
 	line = NULL;
-	while (98)
+	if (fstat(STDIN_FILENO, &sb) == -1)
+	{
+		perror("status fail");
+		exit(EXIT_FAILURE);
+		     
+	}
+	if ((sb.st_mode & S_IFMT) == S_IFIFO)
+	{
+		pipe = 1;
+	}
+	if (pipe == 0)
+	{
+		
+	}
+	while (1)
 	{
 		_putstring(PROMPT);
 		g_line = getline(&line, &n, stdin);
 		toke = malloc(sizeof(char) * 300);
-	       	line[g_line - 1] = 0; /* placing null character at end of the line */
+		line[g_line - 1] = 0; /* placing null character at end of the line */
 		token = strtok(line, " \n\t\r"); 
 		i = 0;
 		while (token != NULL)
@@ -32,21 +47,14 @@ int main(int agrc, char *argv[], char *envp[])
 			i++;
 		}
 		toke[i] = NULL;
-		pid = fork(); /*child process starts at this call */
-		if (pid < 0)
+		_command(toke);
+		if (pipe == 1)
 		{
-			perror("Fork did not succeed: ");
+			break;
 		}
-		if (pid == 0)
-		{
-			_path(toke);
-		}
-		else
-		{
-			pid = wait(&status);
-		}
-	       	free(toke);
+		free(toke);
 	}
-	return (0);
+	printf("after loopn\n");
+	exit(EXIT_SUCCESS);
 }
 
