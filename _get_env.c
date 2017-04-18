@@ -21,7 +21,7 @@ char *_getenv(const char *name)
                                 j++;
                                 if (len == j)
                                 {
-					copy = strcpy(copy,environ[i]);
+					copy = _strcpy(copy,environ[i]);
                                         token = strtok(copy, s);
                                         token = strtok(NULL, s);
                                         return(token);
@@ -30,6 +30,6 @@ char *_getenv(const char *name)
                 }
                 i++;
         }
-        putchar('\n');
+
         return (0);
 }
