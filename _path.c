@@ -23,13 +23,11 @@ void _path(char **t)
 			}
 			else
 			{
-				_putstring("-bash: ");
-				_putstring(t[0]);
-				_putstring(": No such file or directory\n");
+				perror(t[0]);
 				_exit(98);
 			}
 		}
-		path = strcpy(path, yay->string);
+		path = _strcpy(path, yay->string);
                 path = _strcat(path, t[0]);
                 file = access(path, X_OK);
                 if (file == 0)
@@ -43,7 +41,7 @@ void _path(char **t)
                 yay = yay->next;
                 if (yay->next == NULL)
                 {
-                        _putstring(t[0]);
+			_putstring(t[0]);
                         _putstring(": command not found\n");
 			_exit(98);
 			free(path);
