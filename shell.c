@@ -6,7 +6,7 @@ static void sigHandler(int sig)
 	if (sig == SIGINT)
 	{
 		_putstring("\n");
-/*		_putstring(PROMPT); */
+		_putstring(PROMPT);
 	}
 	
 }
@@ -42,7 +42,10 @@ int main(void)
 	}
 	while (1)
 	{
-		/*	_putstring(PROMPT); */
+		if (pipe == 0)
+		{
+			_putstring(PROMPT);
+		}
 		if (signal(SIGINT, sigHandler) == SIG_ERR)
 			perror("signal error");
 		g_line = getline(&line, &n, stdin);
