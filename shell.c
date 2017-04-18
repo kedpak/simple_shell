@@ -42,7 +42,7 @@ int main(void)
 	}
 	while (1)
 	{
-		_putstring(PROMPT);
+		/*	_putstring(PROMPT); */
 		if (signal(SIGINT, sigHandler) == SIG_ERR)
 			perror("signal error");
 		g_line = getline(&line, &n, stdin);
