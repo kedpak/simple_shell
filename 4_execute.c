@@ -2,7 +2,7 @@
 
 void _execute(char **tokens)
 {
-	pid_t pid, wpid;
+	pid_t pid;
 	int status;
 
 	if (tokens[0] == NULL)
@@ -17,5 +17,5 @@ void _execute(char **tokens)
 	if (pid == 0)/* child processes */
 		_path(tokens);
 	else /* parent process */
-		wpid = waitpid(pid, &status, WUNTRACED);
+		pid = wait(&status);
 }
