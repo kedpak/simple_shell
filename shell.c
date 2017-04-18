@@ -6,7 +6,7 @@ static void sigHandler(int sig)
 	if (sig == SIGINT)
 	{
 		_putstring("\n");
-		_putstring(PROMPT);
+/*		_putstring(PROMPT); */
 	}
 	
 }
