@@ -41,8 +41,8 @@ void _path(char **t)
                 yay = yay->next;
                 if (yay->next == NULL)
                 {
-			_putstring(t[0]);
-                        _putstring(": command not found\n");
+			_errorstring(t[0]);
+                        _errorstring(": command not found\n");
 			_exit(98);
 			free(path);
                 }

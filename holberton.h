@@ -39,6 +39,7 @@ typedef struct environ_list
 #define DELIM " \"\n\t\r;"
 /* functions */
 char *_getline(void);
+char _errorstring(char *str);
 char **tokenize(char *line);
 void _execute(char **tokens);
 int _my_exit(void);

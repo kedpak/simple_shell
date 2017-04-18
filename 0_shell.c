@@ -17,6 +17,12 @@ char _putstring(char *str)
 	return (0);
 }
 
+char _errorstring(char *str)
+{
+	write(STDERR_FILENO, str, _strlen(str));
+	return (0);
+}
+
 int main(void)
 {
 	int pipe;
