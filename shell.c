@@ -28,10 +28,7 @@ int main(void)
 	{
 		pipe = 1;
 	}
-	if (pipe == 0)
-	{
-		
-	}
+	_putstring(PROMPT);
 	while (1)
 	{
 		_putstring(PROMPT);
