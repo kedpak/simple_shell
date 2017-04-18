@@ -4,7 +4,9 @@
 char *_getline(void)
 {
 	char *line; /* line is freed in the main function */
-	ssize_t buffer, g_line;
+	size_t buffer;
+	ssize_t g_line;
+
 /*TODO look at mallocing for char *line */	
 	line = NULL, buffer = 0;
 	g_line = getline(&line, &buffer, stdin);/* getline mallocs with buffer*/
