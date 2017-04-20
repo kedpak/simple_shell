@@ -1,4 +1,4 @@
-.TH sh 1 "20 April 2017" "0.1" "sh"
+.TH sh 1 "20 April 2017" "0.1" "simple shell man page"
 
 .SH NAME
 .B Simple Shell
@@ -8,16 +8,55 @@
 .SS ./hsh
 
 .SH DESCRIPTION
-This simple shell can execute some basic bash commands from the command line interpreter. It emulates a command line interpreter, that represents a user interface program. Utilizes system commands and certain commands found in $PATH. The path is checked and if specified commands are found, those commands will be executed. Custom builtins are also taken into account. Works for both interactive and non-interactive mode.
+This simple shell can execute some basic bash commands from the command line interpreter. It emulates a command line interpreter, that represents a user interface program. The shell checks for aliases and builtins in the PATH.. The shell checks inside the environment, where executable files are stored. Utilizes system commands and certain commands found in $PATH. The path is checked and if specified commands are found, those commands will be executed. Works for both interactive and non-interactive mode.
+
+.SH EXECUTION
+When the user inputs a command into the	command	line tokenization occurs. If the command is an alias value is replaced. Environment is checked to see if executable in PATH. 
+
+.B ENVIRONMENT
+The enviroment is a list of directors where executable files are stored. In the shell, the directories inside the enironment are represented by a name and value. A '=' is used as a delimter. 
+
+Example:
+
+HOME=/home/vagrant
 
 .B PATH
 Commands that are found inside the $PATH can be executed. Can be called both by directly inputing the file location or command itself.
+If command itself is inputed, concatenation occurs combining the inputed command with the path directory.
 
 Example:
 /bin/ls - will print files in current directory  ---- ls - will print files in current directory \
 
-
 .B BUILT-INS
 The 'env' and 'exit' builtins can be executed
 
-.B
+The env command will print out the environment list where executables are stored. The strings all possess a name and value.
+
+The exit command exits the shell
+
+.SH MODE
+This shell can be run in both interactive and non-interactive mode. To run in non-interactive mode input echo command with desired command inside double quotations. Pipe into the executable file. 
+
+Example:
+echo "/bin/ls" | ./test_file
+
+.SH CUSTOM FUNCIONS
+This shell utilizes custom functions to replicate the functionality of a UNIX shell. Some of these functions include the following:
+
+.SSHc - tokenize: The tokenize function tokenizes the array that is inputed into the command line
+      - get_env:  This function  makes a copy of the PATH directory and returns it
+      - _path: This function concatenates the input with the path directory and executes command if necessary
+      - _build_list: This function builds a linked list with data containing each directory of the PATH
+      - _execute: This function executes the child process 
+      - _getline: This function takes in the input string and utilizes the getline function
+
+.SH OPTIONS
+No options are taken at this time
+
+.SH BUGS
+.SSHC -Command line input does not take into account if only one quotation is placed inside the string. Case should return error but prints list accordingly
+      -Does not take into account if command is inputed with spaces(x3) and newline (will fix this)
+      -Other bugs are possible
+
+.SH AUTHOR
+Kevin Pak, Hunter Casbeer
