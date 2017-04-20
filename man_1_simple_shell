@@ -8,10 +8,10 @@
 .SS ./hsh
 
 .SH DESCRIPTION
-This simple shell can execute some basic bash commands from the command line interpreter. It emulates a command line interpreter, that represents a user interface program. Utilizes system commands and certain commands found in $PATH. The path is checked and if specified commands are found, those commands will be executed. Custom builtins are also taken into account. Works for both interactive and non-interactive mode. 
+This simple shell can execute some basic bash commands from the command line interpreter. It emulates a command line interpreter, that represents a user interface program. Utilizes system commands and certain commands found in $PATH. The path is checked and if specified commands are found, those commands will be executed. Custom builtins are also taken into account. Works for both interactive and non-interactive mode.
 
 .B PATH
-Commands that are found inside the $PATH can be executed. Can be called both by directly inputing the file location or command itself. 
+Commands that are found inside the $PATH can be executed. Can be called both by directly inputing the file location or command itself.
 
 Example:
 /bin/ls - will print files in current directory  ---- ls - will print files in current directory \
@@ -20,4 +20,4 @@ Example:
 .B BUILT-INS
 The 'env' and 'exit' builtins can be executed
 
-.B 
+.B
