@@ -11,25 +11,18 @@
 extern char **environ;
 #define PROMPT "$ "
 
+/**
+ * struct path_list - linked list for path
+ * @str: string of path directory
+ * @len: length path directory
+ * @next: points to next node
+ */
 typedef struct path_list
 {
-        char *str;
+	char *str;
 	unsigned int len;
-        struct path_list *next;
+	struct path_list *next;
 } list_tt;
-
-/**                                                                                                                       
- * environ_list - linked list of environ                                                                                  
- * @name: name of environ list                                                                                            
- * @value: path value                                                                                                     
- * @next: points to the next node                                                                                         
- */
-typedef struct environ_list
-{
-        const char *name;
-        const char *value;
-        struct environ_list *next;
-} list_t;
 
 /* Constants */
 #define BUFSIZE 1024
@@ -39,21 +32,21 @@ typedef struct environ_list
 char *_getline(void);
 char _errorstring(char *str);
 char **tokenize(char *line);
-void _execute(char **tokens, char *line);
+void _execute(char **tokens);
 int _my_exit(void);
 int _strlen(const char *s);
 int _print_path(void);
 int _setenv(const char *name, const char *value, int overwrite);
-list_t *_environ_linked(list_t *head);
 size_t print_list(const list_tt *h);
 list_tt *_build_list(void);
 list_tt *add_node_end(list_tt **head, const char *str);
 char *_getenv(const char *name, char *mem);
-char * _path(char **t, list_tt *list);
+void _path(char **t);
 char *_strcat(char *dest, char *src);
 char _putstring(char *str);
 char *_strcpy(char *dest, char *src);
 char *_strdup(const char *str);
 void free_list(list_tt *head);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+void _pathhelper(int file, char **t);
 #endif
