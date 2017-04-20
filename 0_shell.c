@@ -54,7 +54,7 @@ int main(void)
 		tokens = tokenize(line);
 /*		builtinCheck = _builtins(tokens);*/
 /*		if (builtinCheck != 1)*/
-		_execute(tokens, line);
+			_execute(tokens);
 		if (pipe == 1)
 			break;
 		free(line);
